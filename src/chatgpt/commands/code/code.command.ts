@@ -16,7 +16,7 @@ export class CodeCommand {
     @InteractionEvent() interaction: CommandInteraction,
   ) {
     const { message } = dto;
-    interaction.deferReply();
+    await interaction.deferReply();
     const replyMsg = await this.codeService.runCompletion(message);
     if (replyMsg) {
       interaction.editReply(replyMsg);

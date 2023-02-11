@@ -17,6 +17,7 @@ export class PauseCommand {
     @InteractionEvent() interaction: CommandInteraction,
     @InteractionEvent() message: Message,
   ) {
+    await interaction.deferReply();
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
