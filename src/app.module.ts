@@ -24,10 +24,10 @@ import { MusicModule } from './music/music.module';
             forGuild: configService.get('GUILD_ID_2'),
             removeCommandsBefore: true,
           },
-          {
-            forGuild: configService.get('GUILD_ID_1'),
-            removeCommandsBefore: true,
-          },
+          // {
+          //   forGuild: configService.get('GUILD_ID_1'),
+          //   removeCommandsBefore: true,
+          // },
         ],
       }),
       inject: [ConfigService],
