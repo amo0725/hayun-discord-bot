@@ -21,11 +21,12 @@ export class PlayCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     const textChannel = interaction.channel;
     if (!voiceChannel) {
-      return interaction.reply(
+      return interaction.editReply(
         ':no_entry_sign: 你沒有加入語音頻道，請加入語音頻道後再試......',
       );
     }
@@ -36,20 +37,22 @@ export class PlayCommand {
     });
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':no_entry_sign: 播放失敗，請稍後再試......');
+      return interaction.editReply(
+        ':no_entry_sign: 播放失敗，請稍後再試......',
+      );
     }
     const { songs } = queue;
     const { length } = songs;
 
     if (length > 1) {
-      return interaction.reply(
+      return interaction.editReply(
         `:white_check_mark: 已加入播放清單 ${songs[length - 1].name} - ${
           songs[length - 1].formattedDuration
         }`,
       );
     }
 
-    return interaction.reply(
+    return interaction.editReply(
       `:arrow_forward: 正在播放 ${songs[0].name} - ${songs[0].formattedDuration}`,
     );
   }

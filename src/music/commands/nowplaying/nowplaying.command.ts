@@ -27,10 +27,10 @@ export class NowplayingCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue)
-      return interaction.reply(`:man_gesturing_no: 目前沒有正在播放的歌曲`);
+      return interaction.editReply(`:man_gesturing_no: 目前沒有正在播放的歌曲`);
     const song = queue.songs[0];
-    return interaction.reply(
-      `目前正在播放 ${song.name} - ${song.formattedDuration}\n`,
+    return interaction.editReply(
+      `:arrow_forward: 目前正在播放 ${song.name} - ${song.formattedDuration}\n`,
     );
   }
 }

@@ -22,6 +22,7 @@ export class SkiptoCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
@@ -31,11 +32,11 @@ export class SkiptoCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':man_gesturing_no: 目前播放清單中沒有歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前播放清單中沒有歌曲');
     }
     await this.distube.jump(message, dto.number).then(() => {
       const queue = this.distube.getQueue(message);
-      return interaction.reply(
+      return interaction.editReply(
         `:fast_forward: 已經為您跳過${dto.number} 首歌曲 正在播放 ${queue.songs[0].name} - ${queue.songs[0].formattedDuration}\n`,
       );
     });

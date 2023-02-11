@@ -18,6 +18,7 @@ export class ShuffleCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
@@ -27,7 +28,7 @@ export class ShuffleCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':man_gesturing_no: 目前播放清單中沒有歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前播放清單中沒有歌曲');
     }
     queue.shuffle();
     const nowQueue = await this.distube.getQueue(message);
@@ -43,6 +44,6 @@ export class ShuffleCommand {
         }\n`;
       }
     });
-    return interaction.reply(playlist);
+    return interaction.editReply(playlist);
   }
 }

@@ -18,6 +18,7 @@ export class StopCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
@@ -27,9 +28,9 @@ export class StopCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':man_gesturing_no: 目前沒有正在播放的歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前沒有正在播放的歌曲');
     }
     queue.stop();
-    return interaction.reply(`:stop_button: 已經為您停止播放音樂`);
+    return interaction.editReply(`:stop_button: 已經為您停止播放音樂`);
   }
 }

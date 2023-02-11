@@ -18,6 +18,7 @@ export class SkipCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
@@ -27,13 +28,13 @@ export class SkipCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':man_gesturing_no: 目前播放清單中沒有歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前播放清單中沒有歌曲');
     }
     const song = await queue.skip();
     if (!song) {
-      return interaction.reply(`已經沒有歌曲可以跳過了`);
+      return interaction.editReply(`已經沒有歌曲可以跳過了`);
     }
-    return interaction.reply(
+    return interaction.editReply(
       `:track_next: 現在播放 ${song.name} - ${song.formattedDuration}`,
     );
   }

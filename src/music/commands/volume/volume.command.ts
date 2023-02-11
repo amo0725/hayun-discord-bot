@@ -21,6 +21,7 @@ export class VolumeCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
@@ -30,10 +31,10 @@ export class VolumeCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue) {
-      return interaction.reply(':man_gesturing_no: 目前沒有正在播放的歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前沒有正在播放的歌曲');
     }
     queue.setVolume(dto.volume);
-    return interaction.reply(
+    return interaction.editReply(
       `:loud_sound: 已經為您調整目前正在播放的歌曲的音量至 ${dto.volume}`,
     );
   }

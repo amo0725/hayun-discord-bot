@@ -18,16 +18,17 @@ export class PlaylistCommand {
     @InteractionEvent() message: Message,
   ) {
     await interaction.deferReply();
+
     const { member } = message;
     const voiceChannel = member.voice.channel;
     if (!voiceChannel) {
-      return interaction.reply(
+      return interaction.editReply(
         ':no_entry_sign: 你沒有加入語音頻道，請加入語音頻道後再試......',
       );
     }
     const queue = await this.distube.getQueue(message);
     if (!queue || !queue.songs) {
-      return interaction.reply(':man_gesturing_no: 目前播放清單中沒有歌曲');
+      return interaction.editReply(':man_gesturing_no: 目前播放清單中沒有歌曲');
     }
     const { songs } = queue;
     let playlist = '';
@@ -41,6 +42,6 @@ export class PlaylistCommand {
         }\n`;
       }
     });
-    return interaction.reply(playlist);
+    return interaction.editReply(playlist);
   }
 }

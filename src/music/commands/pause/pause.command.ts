@@ -27,13 +27,13 @@ export class PauseCommand {
     }
     const queue = this.distube.getQueue(message);
     if (!queue)
-      return interaction.reply(`:man_gesturing_no: 目前沒有正在播放的歌曲`);
+      return interaction.editReply(`:man_gesturing_no: 目前沒有正在播放的歌曲`);
 
     if (queue.paused) {
       queue.resume();
-      return interaction.reply(`:arrow_forward: 已經繼續為您播放歌曲`);
+      return interaction.editReply(`:arrow_forward: 已經繼續為您播放歌曲`);
     }
     queue.pause();
-    return interaction.reply(`:pause_button: 已經為您暫停播放歌曲`);
+    return interaction.editReply(`:pause_button: 已經為您暫停播放歌曲`);
   }
 }
