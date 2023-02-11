@@ -3,4 +3,3 @@ dist
 packages/sample/**/.env
 .idea
 .env
-package-lock.json
