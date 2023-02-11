@@ -1,10 +1,9 @@
-import { AppCommandData, DiscordModule } from '@discord-nestjs/core';
+import { DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GatewayIntentBits, Message } from 'discord.js';
+import { GatewayIntentBits } from 'discord.js';
 import { ChatgptModule } from './chatgpt/chatgpt.module';
 import { MusicModule } from './music/music.module';
-import { Subject } from 'rxjs';
 
 @Module({
   imports: [
