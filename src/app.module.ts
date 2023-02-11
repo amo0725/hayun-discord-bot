@@ -1,9 +1,10 @@
-import { DiscordModule } from '@discord-nestjs/core';
+import { AppCommandData, DiscordModule } from '@discord-nestjs/core';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GatewayIntentBits } from 'discord.js';
+import { GatewayIntentBits, Message } from 'discord.js';
 import { ChatgptModule } from './chatgpt/chatgpt.module';
 import { MusicModule } from './music/music.module';
+import { Subject } from 'rxjs';
 
 @Module({
   imports: [
@@ -21,7 +22,11 @@ import { MusicModule } from './music/music.module';
         },
         registerCommandOptions: [
           {
-            forGuild: configService.get('GUILD_ID_WITH_COMMANDS'),
+            forGuild: configService.get('GUILD_ID_2'),
+            removeCommandsBefore: true,
+          },
+          {
+            forGuild: configService.get('GUILD_ID_1'),
             removeCommandsBefore: true,
           },
         ],

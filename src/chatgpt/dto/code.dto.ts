@@ -1,6 +1,6 @@
 import { Param } from '@discord-nestjs/core';
 
-export class ChatDto {
+export class CodeDto {
   @Param({
     name: 'message',
     description: '訊息',
