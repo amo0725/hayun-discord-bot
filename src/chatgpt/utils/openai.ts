@@ -18,7 +18,7 @@ export class OpenaiService {
       const completion = await this.openai.createCompletion({
         model: 'text-davinci-003',
         prompt: message,
-        max_tokens: 1500,
+        max_tokens: 1000,
         temperature: 0.9,
       });
       return completion.data.choices[0].text;
@@ -32,7 +32,7 @@ export class OpenaiService {
       const completion = await this.openai.createCompletion({
         model: 'davinci-codex',
         prompt: message,
-        max_tokens: 1500,
+        max_tokens: 1000,
         temperature: 0.9,
       });
       return completion.data.choices[0].text;
